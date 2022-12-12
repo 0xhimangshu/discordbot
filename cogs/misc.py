@@ -33,7 +33,7 @@ class misc(commands.Cog):
     @commands.command(aliases=("stats",))
     @commands.cooldown(1, 10, commands.BucketType.guild)
     async def about(self, ctx):
-        """Statistics of Krypton."""
+        """Statistics of Krypton.."""
         version = pkg_resources.get_distribution("discord.py").version
         total_memory = psutil.virtual_memory().total >> 20
         used_memory = psutil.virtual_memory().used >> 20
