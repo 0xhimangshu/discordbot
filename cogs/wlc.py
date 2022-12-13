@@ -1,3 +1,13 @@
+# -*- coding: utf-8 -*-
+__author__ = "himangshu147-git"
+__copyright__ = "Copyright 2022, himangshu"
+__credits__ = ["himangshu147-git"]
+__license__ = "MIT"
+__version__ = "beta 0.1a"
+__maintainer__ = "himangshu147-git"
+__email__ = "backyardpy147@gmail.com"
+__status__ = "development"
+
 import json
 import discord
 from discord.ext import commands

@@ -1,3 +1,12 @@
+# -*- coding: utf-8 -*-
+__author__ = "himangshu147-git"
+__copyright__ = "Copyright 2022, himangshu"
+__credits__ = ["himangshu147-git"]
+__license__ = "MIT"
+__version__ = "beta 0.1a"
+__maintainer__ = "himangshu147-git"
+__email__ = "backyardpy147@gmail.com"
+__status__ = "development"
 
 import asyncio
 import json
@@ -5,6 +14,7 @@ import logging
 import os
 import traceback
 import discord
+from config import config
 from discord.ext import commands
 from discord.utils import setup_logging
 
@@ -34,8 +44,12 @@ class Bot(commands.Bot):
 		del data[guild.name]
 		with open('./config/prefixes.json', 'w') as f:
 			json.dump(data, f, indent=4)
-		
 
+	async def setup_hook(self):
+		g_id = discord.Object(id=1050334900873592853)
+		self.tree.copy_global_to(guild=g_id)
+		await self.tree.sync(guild=g_id)
+		
 def get_prefix(bot, message):
     with open('./config/prefixes.json', 'r') as f:
         prefixes = json.load(f)
@@ -47,7 +61,6 @@ async def main():
 			  activity=discord.Activity(type=discord.ActivityType.playing, name="beta 0.1a"),
 	          case_insensitive = True)
 
-				
 	bot.log = logging.getLogger("client")
 	
 	for file in os.listdir("./cogs"):

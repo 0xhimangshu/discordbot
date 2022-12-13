@@ -30,9 +30,9 @@ class misc(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(aliases=("stats",))
+    @commands.hybrid_command(name="stats")
     @commands.cooldown(1, 10, commands.BucketType.guild)
-    async def about(self, ctx):
+    async def _about(self, ctx: commands.Context):
         """Statistics of Krypton.."""
         version = pkg_resources.get_distribution("discord.py").version
         total_memory = psutil.virtual_memory().total >> 20
@@ -45,7 +45,7 @@ class misc(commands.Cog):
         embed.url = "https://discord.gg/v3fHbbhE"
         embed.colour = 0x2f3136
         guild_value = len(self.bot.guilds)
-        embed.add_field(name=f"Latest Changes", value=f"[`{sha[:10]}`](https://github.com/backyard-Py/project/commit/master)\n**commited by:** [`{author}`](https://github.com/{author})")
+        embed.add_field(name=f"Latest Changes", value=f"[`{sha[:6]}`](https://github.com/backyard-Py/project/commit/master)\n**commited by:** [`{author}`](https://github.com/{author})")
         embed.add_field(name="Servers", value=f"`{guild_value:,}` total")
         embed.add_field(name="Members", value=f"`{total_members:,}` Total\n`{cached_members:,}` cached")
         embed.add_field(
@@ -55,7 +55,6 @@ class misc(commands.Cog):
         embed.add_field(name="System", value=f"**RAM**: `{used_memory}/{total_memory} MB`\n**CPU used:** `{cpu_used}%`"),
         embed.set_footer(text=f"Made with discord.py v{version}", icon_url="http://i.imgur.com/5BFecvA.png")
         await ctx.send(embed=embed)
-
 
 async def setup(bot):
     await bot.add_cog(misc(bot))
