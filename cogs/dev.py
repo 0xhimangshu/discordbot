@@ -6,13 +6,13 @@ __license__ = "MIT"
 __version__ = "beta 0.1a"
 __maintainer__ = "himangshu147-git"
 __email__ = "backyardpy147@gmail.com"
-__status__ = "development"
+__status__ = "developerelopment"
 
 import discord
 from discord.ext import commands
 import typing
 
-class dev(commands.Cog):
+class developer(commands.Cog, command_attrs=dict(hidden=True)):
     def __init__(self, bot):
         self.bot=bot
 
@@ -50,4 +50,4 @@ class dev(commands.Cog):
         await ctx.send(f"Synced the tree to {ret}/{len(guilds)}.")
 
 async def setup(bot):
-    await bot.add_cog(dev(bot))
+    await bot.add_cog(developer(bot))
